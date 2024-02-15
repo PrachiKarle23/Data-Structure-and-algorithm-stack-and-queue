@@ -1,0 +1,16 @@
+#include <bits/stdc++.h> 
+stack<int> pushAtBottom(stack<int>& myStack, int x) 
+{
+   stack<int>ans;
+   stack<int>ans1;
+   ans.push(x);
+   while(!myStack.empty()){
+     ans1.push(myStack.top());
+     myStack.pop();
+   }
+   while(!ans1.empty()){
+     ans.push(ans1.top());
+     ans1.pop();
+   }
+   return ans;
+}
