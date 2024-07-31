@@ -1,0 +1,12 @@
+stack<int> insert_at_bottom(stack<int> st, int x){
+    if(st.empty()){
+        st.push(x); 
+    }
+    else{
+        int a= st.top();
+        st.pop();
+        st=insert_at_bottom(st, x);
+        st.push(a);
+    }
+    return st;
+}
