@@ -1,0 +1,28 @@
+class RecentCounter {
+public:
+    int counter;
+    vector<int>a;
+    RecentCounter() {
+        counter=0;
+    }
+    int solve(int t){
+        queue<int>q;
+        int p=t - 3000;
+        int s=min(p,t);
+        int e=max(p,t);
+        
+        for(int i=0;i<a.size();i++){
+            if(a[i]>=s && a[i]<=t){
+                q.push(a[i]);
+            }
+        }
+       
+        return q.size();
+    }
+    int ping(int t) {
+       a.push_back(t);
+       int cnt = solve(t);
+       return cnt;
+    }
+};
+
