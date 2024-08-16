@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int countStudents(vector<int>& stu, vector<int>& sand) {
+        stack<int>st;
+        deque<int>q;
+        for(int i=sand.size()-1;i>=0;i--)
+            st.push(sand[i]);
+        for(int i=stu.size()-1;i>=0;i--)
+            q.push_front(stu[i]);
+        int s =5000;
+        while(s>0){
+         if(q.front() == st.top())
+         {
+            q.pop_front();
+            st.pop();
+         }
+
+        else
+        {
+            int temp = q.front();
+            q.pop_front();
+            q.push_back(temp);
+        }
+        s--;
+        if(q.empty())
+          break;
+        }
+   
+      return st.size();
+    }
+};
