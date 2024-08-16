@@ -1,0 +1,71 @@
+class FrontMiddleBackQueue {
+public:
+    deque<int>q;
+    FrontMiddleBackQueue() {
+        
+    }
+    
+    void pushFront(int val) {
+        q.push_front(val);
+    }
+    
+    void pushMiddle(int val) {
+        int mid=q.size()/2;
+        stack<int>st;
+        for(int i=0;i<mid;i++){
+            st.push(q.front());
+            q.pop_front();
+        }
+        q.push_front(val);
+        while(!st.empty())
+        {
+            q.push_front(st.top());
+            st.pop();
+        }
+    }
+    
+    void pushBack(int val) {
+        q.push_back(val);
+    }
+    
+    int popFront() {
+        if(q.empty()){
+            return -1;
+        }
+       int a=q.front();
+       q.pop_front();
+       return a;
+    }
+    
+    int popMiddle() {
+        if(q.empty()){
+            return -1;
+        }
+       int mid=q.size()/2;
+       if(q.size()%2==0){
+        mid=mid-1;
+       }
+        stack<int>st;
+        for(int i=0;i<mid;i++){
+            st.push(q.front());
+            q.pop_front();
+        }
+        int a=q.front();
+        q.pop_front();
+        while(!st.empty())
+        {
+            q.push_front(st.top());
+            st.pop();
+        }
+        return a;
+    }
+    
+    int popBack() {
+        if(q.empty()){
+            return -1;
+        }
+        int a= q.back();
+        q.pop_back();
+        return a;
+    }
+};
