@@ -57,3 +57,40 @@ public:
         return ans;
     }
 };
+
+
+class Solution {
+public:
+    int solve(int val,int index,vector<int>& nums2)
+    {
+        stack<int>st; 
+        st.push(val);
+        int ans=-1;
+        for(int i=index+1;i<nums2.size();i++)
+        {
+           if(!st.empty() && st.top()<nums2[i])
+           {
+               ans=nums2[i];
+               st.pop();
+           }
+        }
+    
+        return ans;
+    }
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        vector<int>ans;
+
+        unordered_map<int,int>mp;
+        for(int i=0;i<nums2.size();i++)
+        {
+           mp[nums2[i]]=i;
+        }
+
+        for(int i=0;i<nums1.size();i++)
+        {
+            int index=solve(nums1[i],mp[nums1[i]],nums2);
+            ans.push_back(index);
+        }
+        return ans;
+    }
+};
